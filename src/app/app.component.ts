@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 	route:string = 'Recipes';
-	routeVlaue(route) {
+	routeValue(route) {
 		this.route = route;
 	}
 }

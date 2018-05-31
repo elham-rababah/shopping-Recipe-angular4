@@ -6,10 +6,10 @@ import { Component, Output, EventEmitter  } from '@angular/core';
 })
 
 export class HeaderComponent {
-	@Output() routeVlaue = new EventEmitter<string>();
+	@Output() routeValue = new EventEmitter<string>();
 
 	determineRouteValue(route){
-		this.routeVlaue.emit(route);
+		this.routeValue.emit(route);
 
 	}
 }
