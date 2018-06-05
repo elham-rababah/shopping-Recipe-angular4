@@ -18,7 +18,7 @@ export class RecipeService {
 		new Recipe (
 			'Recipe name1',
 			'Tary Tasty1',
-			'http://img1.cookinglight.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/1101-couscous-chicken-ck.jpg?itok=7geW7sC_',\
+			'http://img1.cookinglight.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/1101-couscous-chicken-ck.jpg?itok=7geW7sC_',
 			[
 				new Ingredient('AAAAAA',1),
 				new Ingredient('AAAAAA1',2)
