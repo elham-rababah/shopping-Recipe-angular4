@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	route: string = 'Recipes';
-
-	routeValue(route) {
-		this.route = route;
-	}
 }

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
 	selector: 'app-header',
@@ -6,10 +6,4 @@ import { Component, Output, EventEmitter  } from '@angular/core';
 })
 
 export class HeaderComponent {
-	@Output() routeValue = new EventEmitter<string>();
-
-	determineRouteValue(route){
-		this.routeValue.emit(route);
-
-	}
 }

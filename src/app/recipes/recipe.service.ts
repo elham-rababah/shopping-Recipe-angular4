@@ -3,8 +3,8 @@ import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
 
 export class RecipeService {
-	recipeItemClicked = new EventEmitter<Recipe>()
-	
+	recipeItemClicked = new EventEmitter<Recipe>();
+
 	recipes: Recipe[] = [
 		new Recipe (
 			'Recipe name',
@@ -23,8 +23,9 @@ export class RecipeService {
 				new Ingredient('AAAAAA',1),
 				new Ingredient('AAAAAA1',2)
 			]
-			),
+			)
 	];
+
 
 	getRecipe(){
 		// To return copy about our array 
