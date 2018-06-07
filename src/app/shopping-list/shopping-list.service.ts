@@ -1,9 +1,10 @@
 import { Ingredient } from '../shaerd/ingredient.model';
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs/Subject'
 
 export class ShoppingListService {
 
-	ingrediantsChange = new EventEmitter<Ingredient[]>();
+	ingrediantsChange = new Subject<Ingredient[]>();
 
 	ingredients: Ingredient[] = [
 		new Ingredient('Apple',5),
@@ -17,7 +18,7 @@ export class ShoppingListService {
 
 	addIngrediant(ing: Ingredient) {
     	this.ingredients.push(ing);
-		this.ingrediantsChange.emit(this.ingredients)
+		this.ingrediantsChange.next(this.ingredients)
     }
 
 }
