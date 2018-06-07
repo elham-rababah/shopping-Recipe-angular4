@@ -32,4 +32,9 @@ export class RecipeService {
 		return this.recipes.slice();
 	}
 
+	getRecipeByIndex(index){
+		console.log(index);
+		return this.recipes.slice(index)[0];
+	}
+
 }
