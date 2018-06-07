@@ -1,9 +1,7 @@
-import { EventEmitter} from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
 
 export class RecipeService {
-	recipeItemClicked = new EventEmitter<Recipe>();
 
 	recipes: Recipe[] = [
 		new Recipe (
@@ -27,13 +25,12 @@ export class RecipeService {
 	];
 
 
-	getRecipe(){
+	getRecipe() {
 		// To return copy about our array 
 		return this.recipes.slice();
 	}
 
-	getRecipeByIndex(index){
-		console.log(index);
+	getRecipeByIndex(index) {
 		return this.recipes.slice(index)[0];
 	}
 
