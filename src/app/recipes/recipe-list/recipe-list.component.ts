@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
-
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -17,9 +16,4 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
     this.recipes = this.recipeService.getRecipe();
   }
-
-  recipeItemClicked(recipe: Recipe) {
-    this.recipeService.recipeItemClicked.emit(recipe);
-  }
-
 }
