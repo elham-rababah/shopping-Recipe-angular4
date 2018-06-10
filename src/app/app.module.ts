@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
+import { FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './app.component';
@@ -33,9 +34,11 @@ import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.com
     RecipesStartComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule
+
   ],
   providers: [
     ShoppingListService,

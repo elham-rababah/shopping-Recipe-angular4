@@ -22,4 +22,8 @@ export class ShoppingListComponent implements OnInit {
         }
       )
   }
+
+  ingredientClicked(index){
+    this.shoppingListService.ingrediantClicked.emit(index);
+  }
 }

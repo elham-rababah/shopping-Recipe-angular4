@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject'
 export class ShoppingListService {
 
 	ingrediantsChange = new Subject<Ingredient[]>();
+	ingrediantClicked = new EventEmitter<number>();
 
 	ingredients: Ingredient[] = [
 		new Ingredient('Apple',5),
@@ -21,4 +22,13 @@ export class ShoppingListService {
 		this.ingrediantsChange.next(this.ingredients)
     }
 
+    getIngrediantByIndex(index) {
+		return this.ingredients.slice(index)[0];
+	}
+
+	editIngrediant(index, ing: Ingredient) {
+		this.ingredients[index].name = ing.name;
+		this.ingredients[index].amount = ing.amount;
+		//this.ingrediantsChange.next(this.ingredients); ??? whay have no effect now
+	}
 }
