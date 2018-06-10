@@ -30,7 +30,7 @@ export class ShoppingEditComponent implements OnInit {
     })
   }
 
-  onAddItem(form : NgForm){
+  onSubmit(form : NgForm){
   	let ingname = this.item.name;
   	let ingamount = this.item.amount;
     let newIngrediant = new Ingredient(ingname,ingamount);
@@ -42,8 +42,26 @@ export class ShoppingEditComponent implements OnInit {
         this.editMode = false;
       } else {
         this.shoppingListService.addIngrediant(newIngrediant);     
-      }  
+      }
+
+      this.item = {
+        name: '',
+        amount:0
+      }
+
     }
+  }
+
+  onClear(){
+    this.item = {
+      name: '',
+      amount:0
+    }
+    this.editMode = false;
+  }
+
+  onDelete(){
+     this.shoppingListService.deleteIngrediant(this.editItemIndex);
   }
 
 }

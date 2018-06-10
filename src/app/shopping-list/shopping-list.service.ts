@@ -40,4 +40,10 @@ export class ShoppingListService {
 	    }
 	    return false;
 	}
+
+
+	deleteIngrediant(index){
+		this.ingredients.splice(index,1);
+		this.ingrediantsChange.next(this.ingredients)
+	}
 }
