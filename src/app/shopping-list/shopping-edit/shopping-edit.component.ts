@@ -34,11 +34,15 @@ export class ShoppingEditComponent implements OnInit {
   	let ingname = this.item.name;
   	let ingamount = this.item.amount;
     let newIngrediant = new Ingredient(ingname,ingamount);
-    if(this.editMode){
-      this.shoppingListService.editIngrediant(this.editItemIndex,newIngrediant); 
-      this.editMode = false;
+    if(this.shoppingListService.isIngrediantExist(newIngrediant)) {
+        alert("exist");
     } else {
-      this.shoppingListService.addIngrediant(newIngrediant);     
+      if(this.editMode){
+        this.shoppingListService.editIngrediant(this.editItemIndex,newIngrediant); 
+        this.editMode = false;
+      } else {
+        this.shoppingListService.addIngrediant(newIngrediant);     
+      }  
     }
   }
 

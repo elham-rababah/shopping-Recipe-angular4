@@ -31,4 +31,13 @@ export class ShoppingListService {
 		this.ingredients[index].amount = ing.amount;
 		//this.ingrediantsChange.next(this.ingredients); ??? whay have no effect now
 	}
+
+	isIngrediantExist(ing: Ingredient) {
+	    for (let i = 0; i < this.ingredients.length; i++) {
+	        if (this.ingredients[i].name === ing.name && this.ingredients[i].amount === ing.amount ) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 }
