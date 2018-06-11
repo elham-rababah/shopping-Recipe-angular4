@@ -38,29 +38,19 @@ export class RecipeService {
 	}
 
 
-	addRecipe(Rec: Recipe) {
-    	
+	addRecipe(res: Recipe) {
+    	this.recipes.push(res);
+    	this.recipeChange.emit(this.recipes)
     }
 
-   
-
-	editRecipe(Rec: Recipe) {
-
-	}
-
-	isRecipeExist(Rec: Recipe) {
-	    /*for (let i = 0; i < this.recipes.length; i++) {
-	        if (this.recipes[i].name === ing.name && this.recipes[i].amount === ing.amount ) {
-	            return true;
-	        }
-	    }
-	    return false;*/
+	editRecipe(index,res: Recipe) {
+		this.recipes.splice(index,1,res);
+		this.recipeChange.emit(this.recipes);
 	}
 
 	deleteRecipe(index){
 		this.recipes.splice(index,1);
-		//console.log(this.recipes)
-		this.recipeChange.emit(this.recipes)
+		this.recipeChange.emit(this.recipes);
 	}
 
 

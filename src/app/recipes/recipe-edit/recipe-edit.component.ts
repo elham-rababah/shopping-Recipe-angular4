@@ -51,8 +51,6 @@ export class RecipeEditComponent implements OnInit {
         }
 
       }
-
-      console.log(resipe)
     }
 
     this.recipeForm = new FormGroup ({
@@ -65,13 +63,20 @@ export class RecipeEditComponent implements OnInit {
 
   addIngredieant() {
     (<FormArray> this.recipeForm.get('ingredients')).push(new FormGroup({
-      'name': new FormControl(null, [Validators.required]),
-      'amount': new FormControl(null ,[Validators.required])
+      'name': new FormControl('', [Validators.required]),
+      'amount': new FormControl('' ,[Validators.required])
     }));
   }
 
   onSubmit() {
-    console.log('onSubmit');
+    console.log('onSubmit', this.recipeForm.value);
+    if(this.editMode) {
+      this.recipeService.editRecipe(this.recipeId,this.recipeForm.value);
+    }
+    else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+      this.recipeForm.reset();
+    }
   }
 
 }
