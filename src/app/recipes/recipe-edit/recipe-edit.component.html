@@ -41,9 +41,9 @@
 							>
 						</textarea>
 					</div>
-					<div class="row" >
-						<div class="col-xs-12" formArrayName="ingredients" >
-							<div class="row" *ngFor="let ingredieantCtr of recipeForm.get('ingredients').controls; let i= index " [formGroupName]='i'>
+					<div class="row">
+						<div class="col-xs-12" formArrayName="ingredients">
+							<div class="row" *ngFor="let ingredieantCtr of recipeForm.get('ingredients').controls; let i= index " [formGroupName]='i' style="margin-top: 5px">
 								<div class="col-xs-6" >
 									<input 
 										type="text"
@@ -67,6 +67,18 @@
 									</button> 
 								</div>
 							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="row" >
+						<div class="col-xs-12" >
+							<button
+								(click) = "addIngredieant()"
+								type="button"
+								class="btn btn-success"
+								>
+								Add Ingredieant
+							</button>
 						</div>
 					</div>
 				</div>

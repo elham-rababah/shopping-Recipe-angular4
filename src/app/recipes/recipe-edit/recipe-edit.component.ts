@@ -44,7 +44,7 @@ export class RecipeEditComponent implements OnInit {
         for (let ing of resipe.ingredients) {
           resipeIngredients.push(new FormGroup({
             'name': new FormControl(ing.name),
-            'amount': new FormControl(ing.amount),
+            'amount': new FormControl(ing.amount)
 
           }));
 
@@ -63,7 +63,17 @@ export class RecipeEditComponent implements OnInit {
 
     })
 
+    //console.log(this.recipeForm.get('ingredients'))
+
   }
+
+  addIngredieant() {
+    (<FormArray> this.recipeForm.get('ingredients')).push(new FormGroup({
+      'name': new FormControl(),
+      'amount': new FormControl()
+    }));
+  }
+
   onSubmit() {
 
   }
