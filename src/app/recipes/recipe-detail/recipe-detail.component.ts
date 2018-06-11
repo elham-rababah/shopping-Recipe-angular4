@@ -34,5 +34,9 @@ export class RecipeDetailComponent implements OnInit {
   	})
   }
 
+  deleteRecipe() {
+    this.recipeService.deleteRecipe(this.recipeId);
+
+  }
 
 }

@@ -1,7 +1,10 @@
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
+import { EventEmitter} from '@angular/core'
 
 export class RecipeService {
+
+	recipeChange = new EventEmitter<Recipe[]>();
 
 	recipes: Recipe[] = [
 		new Recipe (
@@ -33,5 +36,32 @@ export class RecipeService {
 	getRecipeByIndex(index) {
 		return this.recipes.slice(index)[0];
 	}
+
+
+	addRecipe(Rec: Recipe) {
+    	
+    }
+
+   
+
+	editRecipe(Rec: Recipe) {
+
+	}
+
+	isRecipeExist(Rec: Recipe) {
+	    /*for (let i = 0; i < this.recipes.length; i++) {
+	        if (this.recipes[i].name === ing.name && this.recipes[i].amount === ing.amount ) {
+	            return true;
+	        }
+	    }
+	    return false;*/
+	}
+
+	deleteRecipe(index){
+		this.recipes.splice(index,1);
+		//console.log(this.recipes)
+		this.recipeChange.emit(this.recipes)
+	}
+
 
 }
