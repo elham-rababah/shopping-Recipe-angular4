@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from '../recipe.service';
-import { FormGroup, FormControl,FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -43,8 +43,8 @@ export class RecipeEditComponent implements OnInit {
       if (resipe.ingredients.length) {
         for (let ing of resipe.ingredients) {
           resipeIngredients.push(new FormGroup({
-            'name': new FormControl(ing.name),
-            'amount': new FormControl(ing.amount)
+            'name': new FormControl(ing.name, [Validators.required]),
+            'amount': new FormControl(ing.amount, [Validators.required])
 
           }));
 
@@ -56,26 +56,22 @@ export class RecipeEditComponent implements OnInit {
     }
 
     this.recipeForm = new FormGroup ({
-      'name': new FormControl(resipeName),
-      'description': new FormControl(resipeDescription),
-      'imagePath': new FormControl(resipeImagePath),
+      'name': new FormControl(resipeName, [Validators.required]),
+      'description': new FormControl(resipeDescription, [Validators.required]),
+      'imagePath': new FormControl(resipeImagePath, [Validators.required]),
       'ingredients': resipeIngredients
-
     })
-
-    //console.log(this.recipeForm.get('ingredients'))
-
   }
 
   addIngredieant() {
     (<FormArray> this.recipeForm.get('ingredients')).push(new FormGroup({
-      'name': new FormControl(),
-      'amount': new FormControl()
+      'name': new FormControl(null, [Validators.required]),
+      'amount': new FormControl(null ,[Validators.required])
     }));
   }
 
   onSubmit() {
-
+    console.log('onSubmit');
   }
 
 }
