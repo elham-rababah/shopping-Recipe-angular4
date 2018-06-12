@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid"> {{editMode?'Update':'Add'}} </button>
-					<button type="buttn" class="btn btn-danger" *ngIf="editMode"> Cancle </button>
+					<button type="buttn" class="btn btn-danger"  (click)="onCancle()"> Cancle </button>
 				</div>
 			</div>
 			<div class="row">
