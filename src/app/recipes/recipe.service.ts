@@ -61,7 +61,7 @@ export class RecipeService {
 
 
 	saveRecipeData() {
-		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes',this.recipes)
+		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes.json',this.recipes)
 		.map(
 			(res: Response)=>{
 				console.log(res.json())
