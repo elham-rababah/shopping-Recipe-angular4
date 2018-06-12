@@ -72,5 +72,19 @@ export class RecipeService {
 			})
 	}
 
+	getRecipeData() {
+		return this.http.get('https://shoppingandrecipe.firebaseio.com/recipes.json')
+		.map(
+			(res: Response)=>{
+				//console.log(res.json())
+				return res.json();
+			},
+			(error)=>{
+				return error.throw(error);
+			})
+	}
+
+
+
 
 }

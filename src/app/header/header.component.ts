@@ -14,19 +14,24 @@ export class HeaderComponent {
 		private shoppingListService : ShoppingListService
 		) {}
 	
-	saveData() {
+	onSaveData() {
 		this.recipeService.saveRecipeData()
 		.subscribe((recipes)=>{
-			console.log(recipes);
 		},(err)=>{
-			alert("error happend you should handel it")
+			alert("error happend you should handel it");
 		});
 
 		this.shoppingListService.saveIngredientsData()
 		.subscribe((ingredients)=>{
-			console.log(ingredients);
 		},(err)=>{
-			alert("error happend you should handel it")
+			alert("error happend you should handel it");
+		})
+	}
+
+	onFetchData() {
+		this.recipeService.getRecipeData().subscribe((recipes)=>{
+			this.recipeService.recipes = recipes;
+			this.recipeService.recipeChange.emit(recipes);
 		})
 	}
 }
