@@ -1,8 +1,14 @@
+import { EventEmitter, Injectable} from '@angular/core';
+import { Http, Response } from '@angular/http';
+import  'rxjs/Rx';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
-import { EventEmitter} from '@angular/core'
+
+@Injectable()
 
 export class RecipeService {
+
+	constructor(private http: Http){}
 
 	recipeChange = new EventEmitter<Recipe[]>();
 
@@ -51,6 +57,19 @@ export class RecipeService {
 	deleteRecipe(index){
 		this.recipes.splice(index,1);
 		this.recipeChange.emit(this.recipes);
+	}
+
+
+	saveRecipeData() {
+		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes',this.recipes)
+		.map(
+			(res: Response)=>{
+				console.log(res.json())
+				return res.json();
+			},
+			(error)=>{
+				return error.throw(error);
+			})
 	}
 
 

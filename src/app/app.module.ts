@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
+import { HttpModule } from '@angular/http';
  
-
 import { DropdownDirective } from './shaerd/dropdown.directive';
 
 import { ShoppingListService } from './shopping-list/shopping-list.service';
@@ -44,7 +44,7 @@ import { AppRoutingModule } from './app.routing.module';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-
+    HttpModule
   ],
   providers: [
     ShoppingListService,

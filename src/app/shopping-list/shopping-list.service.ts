@@ -1,8 +1,14 @@
-import { Ingredient } from '../shaerd/ingredient.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject'
+import { Http, Response } from '@angular/http';
+import { Ingredient } from '../shaerd/ingredient.model';
+
+
+@Injectable()
 
 export class ShoppingListService {
+
+	constructor(private http: Http){}
 
 	ingrediantsChange = new Subject<Ingredient[]>();
 	ingrediantClicked = new EventEmitter<number>();
@@ -45,5 +51,18 @@ export class ShoppingListService {
 	deleteIngrediant(index){
 		this.ingredients.splice(index,1);
 		this.ingrediantsChange.next(this.ingredients)
+	}
+
+
+	saveIngredientsData() {
+		return this.http.put('https://shoppingandrecipe.firebaseio.com/ingredients.json',this.ingredients)
+		.map(
+			(res: Response)=>{
+				console.log(res.json())
+				return res.json();
+			},
+			(error)=>{
+				return error.throw(error);
+			})
 	}
 }
