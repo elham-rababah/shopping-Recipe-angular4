@@ -26,16 +26,18 @@ export class HeaderComponent {
 
 		this.shoppingListService.saveIngredientsData()
 		.subscribe((ingredients)=>{
-			console.log("_________________",ingredients)
 		},(err)=>{
 			console.log("error happend you should handel it",err);
 		})
 	}
 
 	onFetchData() {
-		this.recipeService.getRecipeData().subscribe((recipes)=>{
+		this.recipeService.getRecipeData()
+		.subscribe((recipes)=>{
 			this.recipeService.recipes = recipes;
 			this.recipeService.recipeChange.emit(recipes);
+		},(err)=>{
+			console.log("error happend you should handel it",err);
 		})
 	}
 
