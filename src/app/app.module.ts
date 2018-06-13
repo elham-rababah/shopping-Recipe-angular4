@@ -11,7 +11,8 @@ import { DropdownDirective } from './shaerd/dropdown.directive';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthService } from './auth/auth.service';
-
+import {  AuthGuard } from './auth/auth-guard.service';
+ 
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -53,7 +54,8 @@ import { SigninComponent } from './auth/signin/signin.component';
   providers: [
     ShoppingListService,
     RecipeService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
