@@ -3,12 +3,13 @@ import { Http, Response } from '@angular/http';
 import  'rxjs/Rx';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
-
+import { AuthService } from '../auth/auth.service';
+ 
 @Injectable()
 
 export class RecipeService {
 
-	constructor(private http: Http){}
+	constructor(private http: Http, private authService: AuthService){}
 
 	recipeChange = new EventEmitter<Recipe[]>();
 
@@ -61,7 +62,9 @@ export class RecipeService {
 
 
 	saveRecipeData() {
-		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes.json',this.recipes)
+		let tokenId = this.authService.getIdToken();
+		console.log(tokenId,"tokenId")
+		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId,this.recipes)
 		.map(
 			(res: Response)=>{
 				console.log(res.json())
@@ -73,10 +76,11 @@ export class RecipeService {
 	}
 
 	getRecipeData() {
-		return this.http.get('https://shoppingandrecipe.firebaseio.com/recipes.json')
+		let tokenId = this.authService.getIdToken();
+		return this.http.get('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId)
 		.map(
 			(res: Response)=>{
-				//console.log(res.json())
+				console.log(res.json())
 				return res.json();
 			},
 			(error)=>{
