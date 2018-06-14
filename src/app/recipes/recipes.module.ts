@@ -9,7 +9,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipesStartComponent } from './recipes-start/recipes-start.component';
 import { RecipesRoutingModule } from './recipes.routing.modules';
-import { ShaerdModule} from '../shaerd/shared.modules';
+import { ShaerdModule} from '../shaerd/shared.module';
 
 @NgModule({
 	declarations: [
