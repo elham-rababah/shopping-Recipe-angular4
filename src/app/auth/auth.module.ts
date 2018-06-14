@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { AuthRoutingModule } from './auth.routing.module';
+
 
 @NgModule({
 	declarations:[
@@ -12,7 +14,8 @@ import { SigninComponent } from './signin/signin.component';
     ],
     imports:[
     	CommonModule,
-    	FormsModule
+    	FormsModule,
+    	AuthRoutingModule
     ]
 })
 export class  AuthModule {}
