@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app.routing.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { ShaerdModule} from './shaerd/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
@@ -13,20 +12,21 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     HttpModule,
-    RecipesModule,
     ShaerdModule,
     AuthModule,
     ShoppingListModule
