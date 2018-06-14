@@ -9,7 +9,6 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth/auth-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -35,7 +34,6 @@ import { HomeComponent } from './home/home.component';
     ShoppingListService,
     RecipeService,
     AuthService,
-    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
