@@ -13,7 +13,7 @@ export class HeaderComponent {
 	constructor(
 		private recipeService: RecipeService,
 		private shoppingListService : ShoppingListService,
-		private authService: AuthService
+		public authService: AuthService
 		) {}
 	
 	onSaveData() {
