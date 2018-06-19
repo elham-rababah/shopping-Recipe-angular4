@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject'
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Ingredient } from '../shaerd/ingredient.model';
 import { AuthService } from '../auth/auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 export class ShoppingListService {
 
-	constructor(private http: Http, private authService: AuthService){}
+	constructor(private httpClient: HttpClient, private authService: AuthService){}
 
 	ingrediantsChange = new Subject<Ingredient[]>();
 	ingrediantClicked = new EventEmitter<number>();
@@ -57,11 +57,11 @@ export class ShoppingListService {
 
 	saveIngredientsData() {
 		let tokenId = this.authService.getIdToken();
-		return this.http.put('https://shoppingandrecipe.firebaseio.com/ingredients.json?auth='+tokenId,this.ingredients)
+		return this.httpClient.put('https://shoppingandrecipe.firebaseio.com/ingredients.json?auth='+tokenId,this.ingredients)
 		.map(
-			(res: Response)=>{
-				console.log(res.json())
-				return res.json();
+			(res)=>{
+				
+				return res;
 			},
 			(error)=>{
 				return error.throw(error);

@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable} from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import  'rxjs/Rx';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
@@ -9,7 +9,7 @@ import { AuthService } from '../auth/auth.service';
 
 export class RecipeService {
 
-	constructor(private http: Http, private authService: AuthService){}
+	constructor(private httpClient: HttpClient, private authService: AuthService){}
 
 	recipeChange = new EventEmitter<Recipe[]>();
 
@@ -64,11 +64,10 @@ export class RecipeService {
 	saveRecipeData() {
 		let tokenId = this.authService.getIdToken();
 		console.log(tokenId,"tokenId")
-		return this.http.put('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId,this.recipes)
+		return this.httpClient.put<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId,this.recipes)
 		.map(
-			(res: Response)=>{
-				console.log(res.json())
-				return res.json();
+			(res)=>{
+				return res;
 			},
 			(error)=>{
 				return error.throw(error);
@@ -77,11 +76,10 @@ export class RecipeService {
 
 	getRecipeData() {
 		let tokenId = this.authService.getIdToken();
-		return this.http.get('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId)
+		return this.httpClient.get<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json?auth='+tokenId)
 		.map(
-			(res: Response)=>{
-				console.log(res.json())
-				return res.json();
+			(res)=>{
+				return res;
 			},
 			(error)=>{
 				return error.throw(error);
