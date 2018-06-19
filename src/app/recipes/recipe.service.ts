@@ -79,7 +79,6 @@ export class RecipeService {
 		let tokenId = this.authService.getIdToken();
 		return this.httpClient
 		.get<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json',
-			{params: new HttpParams().set('auth',tokenId)}
 		)
 		.map(
 			(res)=>{
