@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app.routing.module';
-import { ShaerdModule} from './shaerd/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
@@ -18,7 +17,6 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     RouterModule,
     HttpModule,
-    ShaerdModule,
     AuthModule,
     ShoppingListModule,
     CoreModule
