@@ -4,6 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from '../auth/auth.service';
 import { RouterModule } from '@angular/router'
 import { CommonModule } from '@angular/common';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { RecipeService } from '../recipes/recipe.service';
 
 @NgModule({
 	declarations: [
@@ -18,7 +20,9 @@ import { CommonModule } from '@angular/common';
 		HeaderComponent,
 	],
 	providers: [
-		AuthService
+		AuthService,
+		ShoppingListService,
+   	 	RecipeService,
 	]
 })
 export class CoreModule {
