@@ -9,6 +9,7 @@ import { RecipeService } from '../recipes/recipe.service';
 import { ShaerdModule} from '../shaerd/shared.module';
 import { AuthInteceptor } from '../shaerd/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginInteceptor } from '../shaerd/login.interceptor';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 		AuthService,
 		ShoppingListService,
    	 	RecipeService,
-   	 	{ provide: HTTP_INTERCEPTORS ,useClass: AuthInteceptor, multi: true}
+   	 	{ provide: HTTP_INTERCEPTORS ,useClass: AuthInteceptor, multi: true},
+   	 	{ provide: HTTP_INTERCEPTORS ,useClass: LoginInteceptor, multi: true}
+   	 	
 	]
 })
 export class CoreModule {
