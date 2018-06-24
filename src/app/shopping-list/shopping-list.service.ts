@@ -20,15 +20,6 @@ export class ShoppingListService {
 		new Ingredient('Apple2',2),
 	];
 
-	getIngredient(){
-		return this.ingredients.slice();
-	}
-
-	addIngrediant(ing: Ingredient) {
-    	this.ingredients.push(ing);
-		this.ingrediantsChange.next(this.ingredients)
-    }
-
     getIngrediantByIndex(index) {
 		return this.ingredients.slice(index)[0];
 	}

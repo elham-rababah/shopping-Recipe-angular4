@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Ingredient } from '../shaerd/ingredient.model';
@@ -10,10 +9,9 @@ import { ShoppingListService } from './shopping-list.service';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css'],
 })
-export class ShoppingListComponent implements OnInit,OnDestroy {
+export class ShoppingListComponent implements OnInit {
 
 	ingredients: Observable<{ingredients: Ingredient[] }>;
-  ingrediantsChangeSub : Subscription;
   constructor(
     private shoppingListService: ShoppingListService,
     private store: Store<{shoppingList: {ingredients: Ingredient[] }}>,
@@ -25,9 +23,5 @@ export class ShoppingListComponent implements OnInit,OnDestroy {
 
   ingredientClicked(index){
     this.shoppingListService.ingrediantClicked.emit(index);
-  }
-
-  ngOnDestroy() {
-    this.ingrediantsChangeSub.unsubscribe;
   }
 }
