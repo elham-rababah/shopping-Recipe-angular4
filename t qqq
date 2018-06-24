@@ -1,0 +1,54 @@
+[1mdiff --git a/src/app/shopping-list/ngrx-store/shopping-list.actions.ts b/src/app/shopping-list/ngrx-store/shopping-list.actions.ts[m
+[1mindex 5c80bd6..caad718 100644[m
+[1m--- a/src/app/shopping-list/ngrx-store/shopping-list.actions.ts[m
+[1m+++ b/src/app/shopping-list/ngrx-store/shopping-list.actions.ts[m
+[36m@@ -6,11 +6,8 @@[m [mexport const ADD_INGREDIEANT = 'ADD_INGREDIEANT';[m
+ export class AddIngredient implements Action {[m
+ 	readonly type = ADD_INGREDIEANT;[m
+ 	// information that send data from your application to your store[m
+[31m-	//payload:Ingredient;[m
+[31m-[m
+[31m-	constructor(public payload: Ingredient) {[m
+[31m-		// code...[m
+[31m-	}[m
+[32m+[m[41m	[m
+[32m+[m	[32mconstructor(public payload: Ingredient) {}[m
+ [m
+ }[m
+ [m
+[1mdiff --git a/src/app/shopping-list/shopping-edit/shopping-edit.component.ts b/src/app/shopping-list/shopping-edit/shopping-edit.component.ts[m
+[1mindex 50e15ef..4cc3860 100644[m
+[1m--- a/src/app/shopping-list/shopping-edit/shopping-edit.component.ts[m
+[1m+++ b/src/app/shopping-list/shopping-edit/shopping-edit.component.ts[m
+[36m@@ -1,8 +1,10 @@[m
+ import { Component, OnInit } from '@angular/core';[m
+ import { NgForm} from '@angular/forms';[m
+[32m+[m[32mimport { Store } from '@ngrx/store';[m
+ [m
+ import { Ingredient } from '../../shaerd/ingredient.model'[m
+ import { ShoppingListService } from '../shopping-list.service';[m
+[32m+[m[32mimport * as ShoppingListActions from '../ngrx-store/shopping-list.actions';[m[41m [m
+ [m
+ @Component({[m
+   selector: 'app-shopping-edit',[m
+[36m@@ -17,7 +19,10 @@[m [mexport class ShoppingEditComponent implements OnInit {[m
+     amount:0[m
+   }[m
+ [m
+[31m-  constructor(private shoppingListService: ShoppingListService) { }[m
+[32m+[m[32m  constructor([m
+[32m+[m[32m    private shoppingListService: ShoppingListService,[m
+[32m+[m[32m    private store: Store<{shoppingList: {ingredients: Ingredient[] }}>,[m
+[32m+[m[32m    ) { }[m
+ [m
+   ngOnInit() {[m
+     this.shoppingListService.ingrediantClicked.subscribe((index: number)=>{[m
+[36m@@ -41,7 +46,7 @@[m [mexport class ShoppingEditComponent implements OnInit {[m
+         this.shoppingListService.editIngrediant(this.editItemIndex,newIngrediant); [m
+         this.editMode = false;[m
+       } else {[m
+[31m-        this.shoppingListService.addIngrediant(newIngrediant);     [m
+[32m+[m[32m        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant))[m
+       }[m
+ [m
+       this.item = {[m
