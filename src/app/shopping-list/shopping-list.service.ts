@@ -24,12 +24,6 @@ export class ShoppingListService {
 		return this.ingredients.slice(index)[0];
 	}
 
-	editIngrediant(index, ing: Ingredient) {
-		this.ingredients[index].name = ing.name;
-		this.ingredients[index].amount = ing.amount;
-		//this.ingrediantsChange.next(this.ingredients); ??? whay have no effect now
-	}
-
 	isIngrediantExist(ing: Ingredient) {
 	    for (let i = 0; i < this.ingredients.length; i++) {
 	        if (this.ingredients[i].name === ing.name && this.ingredients[i].amount === ing.amount ) {
@@ -38,13 +32,6 @@ export class ShoppingListService {
 	    }
 	    return false;
 	}
-
-
-	deleteIngrediant(index){
-		this.ingredients.splice(index,1);
-		this.ingrediantsChange.next(this.ingredients)
-	}
-
 
 	saveIngredientsData() {
 		let tokenId = this.authService.getIdToken();

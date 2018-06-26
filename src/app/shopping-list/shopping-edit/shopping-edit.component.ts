@@ -43,7 +43,7 @@ export class ShoppingEditComponent implements OnInit {
         alert("exist");
     } else {
       if(this.editMode){
-        this.shoppingListService.editIngrediant(this.editItemIndex,newIngrediant); 
+        this.store.dispatch(new ShoppingListActions.UpdateIngredient({index:this.editItemIndex,ingredient:newIngrediant}));
         this.editMode = false;
       } else {
         this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));

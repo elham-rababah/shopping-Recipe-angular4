@@ -14,15 +14,22 @@ export function shoppingListReducer(state = initState , action: ShoppingListActi
 		case ShoppingListActions.ADD_INGREDIEANT:
 			console.log("ADD_INGREDIEANT", action.payload);
 			return {
-				...state,// I think the currnt state
+				...state,//copy all state properties
 				ingredients:[...state.ingredients, action.payload] // action to return extra info 
+			};
+
+		case ShoppingListActions.UPDATE_INGREDIEANT:
+			let ingredients = [...state.ingredients];
+			ingredients[action.payload.index] = action.payload.ingredient
+			return {
+				...state,
+				ingredients: ingredients
 			};
 
 		case ShoppingListActions.DELETE_INGREDIEANT:
 			console.log("DELETE_INGREDIEANT", action.payload);
 			let oldIngredients = [...state.ingredients]
 			oldIngredients.splice(action.payload,1);
-			console.log(oldIngredients);
 			return {
 				...state,
 				ingredients: oldIngredients
