@@ -14,9 +14,7 @@ export class AddIngredient implements Action {
 export class UpdateIngredient implements Action {
 	readonly type = UPDATE_INGREDIEANT;
 	// information that send data from your application to your store
-	constructor(public payload: {index: number, ingredient: Ingredient}) {
-		console.log('constructor', payload);
-	}
+	constructor(public payload: {index: number, ingredient: Ingredient}) {}
 }
 export class DeleteIngredient implements Action {
 	readonly type = DELETE_INGREDIEANT;

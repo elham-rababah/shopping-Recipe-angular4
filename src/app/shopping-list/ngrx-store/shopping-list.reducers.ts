@@ -12,7 +12,6 @@ const initState = {
 export function shoppingListReducer(state = initState , action: ShoppingListActions.ShoppingListActions){
 	switch (action.type) {
 		case ShoppingListActions.ADD_INGREDIEANT:
-			console.log("ADD_INGREDIEANT", action.payload);
 			return {
 				...state,//copy all state properties
 				ingredients:[...state.ingredients, action.payload] // action to return extra info 
@@ -27,7 +26,6 @@ export function shoppingListReducer(state = initState , action: ShoppingListActi
 			};
 
 		case ShoppingListActions.DELETE_INGREDIEANT:
-			console.log("DELETE_INGREDIEANT", action.payload);
 			let oldIngredients = [...state.ingredients]
 			oldIngredients.splice(action.payload,1);
 			return {
@@ -35,7 +33,6 @@ export function shoppingListReducer(state = initState , action: ShoppingListActi
 				ingredients: oldIngredients
 			};
 		default:
-			console.log('default:case');
 			return state;
 	}
 }
