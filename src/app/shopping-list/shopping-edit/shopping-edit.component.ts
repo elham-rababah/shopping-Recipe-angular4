@@ -34,36 +34,19 @@ export class ShoppingEditComponent implements OnInit {
 
       }
     })
-    /*this.shoppingListService.ingrediantClicked.subscribe((index: number)=>{
-
-        let ingredient = this.shoppingListService.getIngrediantByIndex(index);
-        this.item.name = ingredient.name
-        this.item.amount = ingredient.amount
-        this.editMode = true;
-        this.editItemIndex = index;
-    })*/
   }
 
   onSubmit(form : NgForm){
   	let ingname = this.item.name;
   	let ingamount = this.item.amount;
     let newIngrediant = new Ingredient(ingname,ingamount);
-    if(this.shoppingListService.isIngrediantExist(newIngrediant)) {
-        alert("exist");
-    } else {
       if(this.editMode){
         this.store.dispatch(new ShoppingListActions.UpdateIngredient({ingredient:newIngrediant}));
         this.editMode = false;
       } else {
         this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));
       }
-
-      this.item = {
-        name: '',
-        amount:0
-      }
-
-    }
+      this.onClear();
   }
 
   onClear(){

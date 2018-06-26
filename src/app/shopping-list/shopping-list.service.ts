@@ -10,29 +10,6 @@ import { AuthService } from '../auth/auth.service';
 export class ShoppingListService {
 
 	constructor(private httpClient: HttpClient, private authService: AuthService){}
-
-	ingrediantsChange = new Subject<Ingredient[]>();
-	ingrediantClicked = new EventEmitter<number>();
-
-	ingredients: Ingredient[] = [
-		new Ingredient('Apple',5),
-		new Ingredient('Apple1',1),
-		new Ingredient('Apple2',2),
-	];
-
-    getIngrediantByIndex(index) {
-		return this.ingredients.slice(index)[0];
-	}
-
-	isIngrediantExist(ing: Ingredient) {
-	    for (let i = 0; i < this.ingredients.length; i++) {
-	        if (this.ingredients[i].name === ing.name && this.ingredients[i].amount === ing.amount ) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
-
 	saveIngredientsData() {
 		let tokenId = this.authService.getIdToken();
 		return this.httpClient
