@@ -15,7 +15,6 @@ import * as FromShoppingList from '../ngrx-store/shopping-list.reducers';
 })
 export class ShoppingEditComponent implements OnInit {
   editMode = false;
-  editItemIndex: number;
   item = {
     name: '',
     amount:0
@@ -27,14 +26,22 @@ export class ShoppingEditComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.shoppingListService.ingrediantClicked.subscribe((index: number)=>{
+    this.store.select('shoppingList').subscribe((data)=>{
+      if(data.editedIngredientIndex != null) {
+        this.item.name = data.editedIngredient.name;
+        this.item.amount = data.editedIngredient.amount;
+        this.editMode = true;
+
+      }
+    })
+    /*this.shoppingListService.ingrediantClicked.subscribe((index: number)=>{
 
         let ingredient = this.shoppingListService.getIngrediantByIndex(index);
         this.item.name = ingredient.name
         this.item.amount = ingredient.amount
         this.editMode = true;
         this.editItemIndex = index;
-    })
+    })*/
   }
 
   onSubmit(form : NgForm){
@@ -45,7 +52,7 @@ export class ShoppingEditComponent implements OnInit {
         alert("exist");
     } else {
       if(this.editMode){
-        this.store.dispatch(new ShoppingListActions.UpdateIngredient({index:this.editItemIndex,ingredient:newIngrediant}));
+        this.store.dispatch(new ShoppingListActions.UpdateIngredient({ingredient:newIngrediant}));
         this.editMode = false;
       } else {
         this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));
@@ -68,7 +75,7 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onDelete(){
-    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editItemIndex));
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient());
   }
 
 }

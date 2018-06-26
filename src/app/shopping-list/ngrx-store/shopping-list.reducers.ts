@@ -32,7 +32,7 @@ export function shoppingListReducer(state = initState , action: ShoppingListActi
 
 		case ShoppingListActions.UPDATE_INGREDIEANT:
 			let ingredients = [...state.ingredients];
-			ingredients[action.payload.index] = action.payload.ingredient
+			ingredients[state.editedIngredientIndex] = action.payload.ingredient
 			return {
 				...state,
 				ingredients: ingredients
@@ -40,10 +40,17 @@ export function shoppingListReducer(state = initState , action: ShoppingListActi
 
 		case ShoppingListActions.DELETE_INGREDIEANT:
 			let oldIngredients = [...state.ingredients]
-			oldIngredients.splice(action.payload,1);
+			oldIngredients.splice(state.editedIngredientIndex,1);
 			return {
 				...state,
 				ingredients: oldIngredients
+			};
+		case ShoppingListActions.EDIT_INGREDIEANT:
+			state.editedIngredientIndex = action.payload;
+			state.editedIngredient = state.ingredients[action.payload]
+			return {
+				...state,
+				ingredients:[...state.ingredients]
 			};
 		default:
 			return state;

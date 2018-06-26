@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Ingredient } from '../shaerd/ingredient.model';
 import { ShoppingListService } from './shopping-list.service';
-import * as FromShoppingList from './ngrx-store/shopping-list.reducers'; 
+import * as FromShoppingList from './ngrx-store/shopping-list.reducers';
+import * as ShoppingListActions from './ngrx-store/shopping-list.actions'; 
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -23,6 +25,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   ingredientClicked(index){
-    this.shoppingListService.ingrediantClicked.emit(index);
+    //this.shoppingListService.ingrediantClicked.emit(index);
+    this.store.dispatch(new ShoppingListActions.EditIngredient(index));
   }
 }
