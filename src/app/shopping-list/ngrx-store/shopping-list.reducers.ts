@@ -1,12 +1,25 @@
 import { Ingredient } from '../../shaerd/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions'; //bundel all export to one obj 
 
-const initState = {	
+export interface AppState {
+	shoppingList: State
+}
+
+export interface State {
+	ingredients: Ingredient[],
+	editedIngredient : Ingredient,
+	editedIngredientIndex: number;
+
+}
+
+const initState: State = {	
 	ingredients: [
 		new Ingredient('Apple',5),
 		new Ingredient('Apple1',1),
 		new Ingredient('Apple2',2)
-	]
+	],
+	editedIngredient : null,
+	editedIngredientIndex: null
 };
 
 export function shoppingListReducer(state = initState , action: ShoppingListActions.ShoppingListActions){
