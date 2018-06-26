@@ -46,7 +46,7 @@ export class ShoppingEditComponent implements OnInit {
         this.shoppingListService.editIngrediant(this.editItemIndex,newIngrediant); 
         this.editMode = false;
       } else {
-        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant))
+        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));
       }
 
       this.item = {
@@ -66,7 +66,7 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onDelete(){
-     this.shoppingListService.deleteIngrediant(this.editItemIndex);
+    this.store.dispatch(new ShoppingListActions.DeleteIngredient(this.editItemIndex));
   }
 
 }
