@@ -1,10 +1,6 @@
 import { Ingredient } from '../../shaerd/ingredient.model';
 import * as ShoppingListActions from './shopping-list.actions'; //bundel all export to one obj 
 
-export interface AppState {
-	shoppingList: State
-}
-
 export interface State {
 	ingredients: Ingredient[],
 	editedIngredient : Ingredient,

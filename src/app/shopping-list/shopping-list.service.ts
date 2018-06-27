@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Ingredient } from '../shaerd/ingredient.model';
 import { AuthService } from '../auth/auth.service';
-import * as FromShoppingList from './ngrx-store/shopping-list.reducers';
+import * as FromApp from '../ngrx-store/app.redusers';
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class ShoppingListService {
 	constructor(
 		private httpClient: HttpClient, 
 		private authService: AuthService,
-		private store: Store<FromShoppingList.AppState>
+		private store: Store<FromApp.AppState>
 		){
 			this.store.select('shoppingList').subscribe((data)=>{
 				this.ingredients = data.ingredients;
