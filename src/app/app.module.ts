@@ -10,7 +10,7 @@ import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AppComponent } from './app.component';
 import { shoppingListReducer } from './shopping-list/ngrx-store/shopping-list.reducers';
-
+import { authReducers } from './auth/ngrx-store/auth.reducers';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { shoppingListReducer } from './shopping-list/ngrx-store/shopping-list.re
     AuthModule,
     ShoppingListModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot({shoppingList: shoppingListReducer, Auth: authReducers})
   ],
   providers: [
   ],
