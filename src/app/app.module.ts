@@ -24,7 +24,7 @@ import { authReducers } from './auth/ngrx-store/auth.reducers';
     AuthModule,
     ShoppingListModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer, Auth: authReducers})
+    StoreModule.forRoot({shoppingList: shoppingListReducer, auth: authReducers})
   ],
   providers: [
   ],

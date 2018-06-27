@@ -1,8 +1,16 @@
 import * as AuthAction from './auth.actions';
 
-const intiToken = null;
+export interface State {
+	intiToken: string,
+	authenticated: boolean,
+}
 
-export function authReducers(state , action: AuthAction.AuthActions) {
+const initState: State = {	
+	intiToken: null,
+	authenticated: false,
+};
+
+export function authReducers(state = initState , action: AuthAction.AuthActions) {
 	console.log(action.type);
 	switch (action.type) {
 		case AuthAction.SIGNIN_USER:
