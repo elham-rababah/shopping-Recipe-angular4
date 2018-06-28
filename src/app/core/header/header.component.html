@@ -1,3 +1,4 @@
+{{(authState | async).authenticated}}
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -8,10 +9,10 @@
 			<li routerLinkActive="active"><a [routerLink]="['/shopping-list']">Shopping List</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li routerLinkActive="active"*ngIf="!authService.isAuthenticated()"><a [routerLink]="['/signup']">signup</a></li>
-			<li routerLinkActive="active" *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/signin']">signin</a></li>
-			<li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a (click)="Logout()">signOut</a></li>
-			<li *ngIf="authService.isAuthenticated()" class="dropdown" appDropdown>
+			<li routerLinkActive="active"*ngIf="!(authState | async).authenticated"><a [routerLink]="['/signup']">signup</a></li>
+			<li routerLinkActive="active" *ngIf="!(authState | async).authenticated"><a [routerLink]="['/signin']">signin</a></li>
+			<li routerLinkActive="active" *ngIf="(authState | async).authenticated"><a (click)="Logout()">signOut</a></li>
+			<li *ngIf="(authState | async).authenticated" class="dropdown" appDropdown>
 				<a class="dropdown-toggle" data-toggle="dropdown">Actions
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu">

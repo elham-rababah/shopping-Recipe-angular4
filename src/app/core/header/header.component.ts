@@ -1,20 +1,32 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Store } from '@ngrx/store';
 import { RecipeService } from '../../recipes/recipe.service';
+import { Observable } from 'rxjs/Observable';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { AuthService } from '../../auth/auth.service';
+import * as fromAuth from '../../auth/ngrx-store/auth.reducers';
+import * as formApp from '../../ngrx-store/app.redusers';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html'
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 	
+	authState: Observable<fromAuth.State>;
+
 	constructor(
 		private recipeService: RecipeService,
 		private shoppingListService : ShoppingListService,
-		public authService: AuthService
+		public authService: AuthService,
+		private store: Store<formApp.AppState>
 		) {}
+
+	ngOnInit() {
+		this.authState = this.store.select('auth');
+		console.log();
+	}
 	
 	onSaveData() {
 		this.recipeService.saveRecipeData()

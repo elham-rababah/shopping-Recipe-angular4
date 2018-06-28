@@ -1,15 +1,18 @@
 import { EventEmitter, Injectable} from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import  'rxjs/Rx';
+import { Store } from '@ngrx/store';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
 import { AuthService } from '../auth/auth.service';
- 
+import * as fromAuth from '../auth/ngrx-store/auth.reducers';
+import * as formApp from '../ngrx-store/app.redusers';
+
 @Injectable()
 
 export class RecipeService {
 
-	constructor(private httpClient: HttpClient, private authService: AuthService){}
+	constructor(private httpClient: HttpClient, private store: Store<fromAuth.State>){}
 
 	recipeChange = new EventEmitter<Recipe[]>();
 
@@ -62,7 +65,11 @@ export class RecipeService {
 
 
 	saveRecipeData() {
-		let tokenId = this.authService.getIdToken();
+		let tokenId;
+		this.store.select('token').subscribe((token)=>{
+			tokenId  = token
+		});
+
 		return this.httpClient
 		.put<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json',this.recipes,
 			{params: new HttpParams().set('auth',tokenId)})
@@ -76,7 +83,6 @@ export class RecipeService {
 	}
 
 	getRecipeData() {
-		let tokenId = this.authService.getIdToken();
 		return this.httpClient
 		.get<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json',
 		)

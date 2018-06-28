@@ -1,24 +1,26 @@
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core'
-
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromAuth from '../auth/ngrx-store/auth.reducers';
+import * as AuthAction from '../auth/ngrx-store/auth.actions';
 
 @Injectable()
 
 export class AuthService {
-	tokenId:string;
-
-	constructor(private router: Router) {
+	constructor(private router: Router, private store: Store<fromAuth.State>) {
 	}
 
 	signupUser(email :string, password: string) {
 		firebase.auth()
 		.createUserWithEmailAndPassword(email, password)
 		.then((response)=>{
+			this.store.dispatch(new AuthAction.SignupUser());
 			this.router.navigate(['/recipes']);
 			firebase.auth().currentUser.getIdToken()
 			.then((tokenId:string)=>{
-				this.tokenId = tokenId;
+				this.store.dispatch(new AuthAction.SetToken(tokenId));
+
 			})
 		})
 		.catch((error)=>{
@@ -30,10 +32,11 @@ export class AuthService {
 		firebase.auth()
 		.signInWithEmailAndPassword(email, password)
 		.then((response)=>{
+			this.store.dispatch(new AuthAction.SigninUser());
 			this.router.navigate(['/recipes']);
 			firebase.auth().currentUser.getIdToken()
 			.then((tokenId:string)=>{
-				this.tokenId = tokenId;
+				this.store.dispatch(new AuthAction.SetToken(tokenId));
 			})
 
 			
@@ -42,20 +45,9 @@ export class AuthService {
 			console.log(error);
 		});
 	}
-	
-	getIdToken() {
-		firebase.auth().currentUser.getIdToken()
-		.then((tokenId:string)=>{
-			this.tokenId = tokenId;
-		})
-		return this.tokenId;
-	}
 
-	isAuthenticated() {
-		return this.tokenId != null;
-	}
 
 	destroyToken(){
-		this.tokenId = null;
+		this.store.dispatch(new AuthAction.LogoutUser());
 	}
 }

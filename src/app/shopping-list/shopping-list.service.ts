@@ -23,7 +23,10 @@ export class ShoppingListService {
 	
 
 	saveIngredientsData() {
-		let tokenId = this.authService.getIdToken();
+		let tokenId;
+		this.store.select('auth').subscribe((data)=>{
+				tokenId = data.token;
+		})
 		return this.httpClient
 		.put('https://shoppingandrecipe.firebaseio.com/ingredients.json',this.ingredients,
 			{params: new HttpParams().set('auth',tokenId)})

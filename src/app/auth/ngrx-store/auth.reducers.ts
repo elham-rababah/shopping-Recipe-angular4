@@ -14,13 +14,13 @@ export function authReducers(state = initState , action: AuthAction.AuthActions)
 	console.log(action.type);
 	switch (action.type) {
 		case AuthAction.SIGNIN_USER:
-			console.log('AuthAction.SIGNIN_USER', action.payload);
+			console.log('AuthAction.SIGNIN_USER');
 			return {
 				...state,
 				authenticated: true
 			};
 		case AuthAction.SIGNUP_USER:
-			console.log('AuthAction.SIGNUP_USER', action.payload);
+			console.log('AuthAction.SIGNUP_USER');
 			return {
 				...state,
 				authenticated: true
@@ -34,7 +34,6 @@ export function authReducers(state = initState , action: AuthAction.AuthActions)
 			};
 
 		default:
-			console.log('default');
-			return ;
+			return state;
 	}
 }
