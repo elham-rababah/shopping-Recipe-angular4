@@ -14,7 +14,7 @@ import * as FromApp from '../../ngrx-store/app.redusers';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-
+  
   recipe: Recipe;
   recipeId: number;
 

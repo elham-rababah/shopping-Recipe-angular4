@@ -1,12 +1,12 @@
 import * as AuthAction from './auth.actions';
 
 export interface State {
-	intiToken: string,
+	token: string,
 	authenticated: boolean,
 }
 
 const initState: State = {	
-	intiToken: null,
+	token: null,
 	authenticated: false,
 };
 
@@ -15,13 +15,26 @@ export function authReducers(state = initState , action: AuthAction.AuthActions)
 	switch (action.type) {
 		case AuthAction.SIGNIN_USER:
 			console.log('AuthAction.SIGNIN_USER', action.payload);
-			return ;
+			return {
+				...state,
+				authenticated: true
+			};
 		case AuthAction.SIGNUP_USER:
 			console.log('AuthAction.SIGNUP_USER', action.payload);
-			return ;
+			return {
+				...state,
+				authenticated: true
+			};
+
+		case AuthAction.LOGOUT_USER:
+			console.log('AuthAction.LOGOUT_USER');
+			return {
+				...state,
+				authenticated: false,
+			};
+
 		default:
 			console.log('default');
 			return ;
 	}
-	return state;
 }
