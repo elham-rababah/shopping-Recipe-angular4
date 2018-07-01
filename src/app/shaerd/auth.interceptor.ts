@@ -13,7 +13,9 @@ export class  AuthInteceptor implements HttpInterceptor {
 
 	intercept(req: HttpRequest<any> , next: HttpHandler):Observable<HttpEvent<any>> {
 		
-		return this.store.select('auth').switchMap((authState: fromAuth.State)=>{
+		return this.store.select('auth')
+		.take(1)// its mean only take it once
+		.switchMap((authState: fromAuth.State)=>{
 			
 			let tokenId  = authState.token;
 			const copiedreq = req.clone({params: req.params.set('auth',tokenId)});
