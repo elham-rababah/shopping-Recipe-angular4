@@ -10,15 +10,12 @@ import * as formApp from '../ngrx-store/app.redusers';
 export class AuthGuard implements CanActivate {
 	
 	constructor(
-		private store: Store<fromAuth.State>) {
+		private store: Store<formApp.AppState>) {
 	}
 
 	canActivate(route: ActivatedRouteSnapshot ,state:RouterStateSnapshot){
-		
-		let isAuthenticated;
-		let x = this.store.take(1).subscribe(data=>{
-			isAuthenticated = data['auth']['authenticated'];
+		return this.store.select('auth').map((authState: fromAuth.State)=>{
+			return authState.authenticated;
 		})
-		return isAuthenticated; 
 	}
 }

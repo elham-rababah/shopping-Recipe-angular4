@@ -32,6 +32,13 @@ export function authReducers(state = initState , action: AuthAction.AuthActions)
 				...state,
 				authenticated: false,
 			};
+			
+		case AuthAction.SET_TOKEN:
+			console.log('AuthAction.SET_TOKEN');
+			return {
+				...state,
+				token: action.payload,
+			};
 
 		default:
 			return state;
