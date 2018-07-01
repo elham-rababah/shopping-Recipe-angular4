@@ -14,6 +14,11 @@ export class AuthGuard implements CanActivate {
 	}
 
 	canActivate(route: ActivatedRouteSnapshot ,state:RouterStateSnapshot){
-		return this.store.select('authenticated');
+		
+		let isAuthenticated;
+		let x = this.store.take(1).subscribe(data=>{
+			isAuthenticated = data['auth']['authenticated'];
+		})
+		return isAuthenticated; 
 	}
 }
