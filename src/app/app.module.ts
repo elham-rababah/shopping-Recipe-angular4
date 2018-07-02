@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store'
-
+import { EffectsModule } from '@ngrx/effects'
 import { AppRoutingModule } from './app.routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AppComponent } from './app.component';
-
 import * as fromApp from  './ngrx-store/app.redusers';
+import { AuthEffects } from './auth/ngrx-store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import * as fromApp from  './ngrx-store/app.redusers';
     AuthModule,
     ShoppingListModule,
     CoreModule,
-    StoreModule.forRoot(fromApp.reducers)
+    StoreModule.forRoot(fromApp.reducers),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
   ],

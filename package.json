@@ -21,12 +21,14 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngrx/effects": "^6.0.1",
     "@ngrx/store": "^5.1.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "firebase": "^5.0.4",
     "jquery": "^3.3.1",
-    "rxjs": "^5.5.6",
+    "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.2.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
