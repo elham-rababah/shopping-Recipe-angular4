@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { RecipeService } from '../../recipes/recipe.service';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { AuthService } from '../../auth/auth.service';
 import * as fromAuth from '../../auth/ngrx-store/auth.reducers';
 import * as formApp from '../../ngrx-store/app.redusers';
+import * as AuthActions from '../../auth/ngrx-store/auth.actions';
 
 @Component({
 	selector: 'app-header',
@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit{
 	constructor(
 		private recipeService: RecipeService,
 		private shoppingListService : ShoppingListService,
-		public authService: AuthService,
 		private store: Store<formApp.AppState>
 		) {}
 
@@ -54,6 +53,6 @@ export class HeaderComponent implements OnInit{
 	}
 
 	Logout() {
-		this.authService.destroyToken()
+		this.store.dispatch(new AuthActions.LogoutUser());
 	}
 }

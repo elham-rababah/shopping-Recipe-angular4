@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthService } from '../auth.service';
 import * as fromApp  from '../../ngrx-store/app.redusers';
 import * as AuthAction from '../ngrx-store/auth.actions';
 
@@ -13,7 +12,9 @@ import * as AuthAction from '../ngrx-store/auth.actions';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService, private store: Store<fromApp.AppState>) { }
+  constructor(
+    private store: Store<fromApp.AppState>
+    ) { }
 
   ngOnInit() {
   }

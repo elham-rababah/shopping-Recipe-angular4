@@ -3,7 +3,6 @@ import { Subject } from 'rxjs/Subject'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Ingredient } from '../shaerd/ingredient.model';
-import { AuthService } from '../auth/auth.service';
 import * as FromApp from '../ngrx-store/app.redusers';
 
 
@@ -13,7 +12,6 @@ export class ShoppingListService {
 	ingredients = [];
 	constructor(
 		private httpClient: HttpClient, 
-		private authService: AuthService,
 		private store: Store<FromApp.AppState>
 		){
 			this.store.select('shoppingList').subscribe((data)=>{
