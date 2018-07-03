@@ -7,6 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import * as firebase from 'firebase';
 import { fromPromise } from 'rxjs/observable/fromPromise';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -18,7 +19,6 @@ export class AuthEffects {
 	authSignup = this.actions$.
 	ofType(AuthAction.TRY_SIGNUP_USER)
 	.map((action: AuthAction.TrySignupUser)=>{
-		console.log('map payload');
 		return action.payload;
 	})
 	.switchMap((authdata: {username:string, password: string})=> {
@@ -27,22 +27,17 @@ export class AuthEffects {
 			);
 	})
 	.switchMap(()=>{
+		this.router.navigate(['/recipes']);
 		return fromPromise(firebase.auth().currentUser.getIdToken());
 	})
 	.mergeMap((token: string)=> { // mergeMap merge to observable
 		return [
-			{
-				type: AuthAction.SignupUser
-			},
-			{
-				type: AuthAction.SetToken,
-				payload: token
-			}
+			new AuthAction.SetToken(token),
+			new AuthAction.SignupUser()
 		];
 	});
 
-	constructor(private actions$: Actions){
-		console.log('AuthEffects constructor');
+	constructor(private actions$: Actions, private router: Router){
 	}
 }
 
