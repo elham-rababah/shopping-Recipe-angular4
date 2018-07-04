@@ -4,7 +4,6 @@ import  'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shaerd/ingredient.model';
-import { AuthService } from '../auth/auth.service';
 import * as fromAuth from '../auth/ngrx-store/auth.reducers';
 import * as formApp from '../ngrx-store/app.redusers';
 
