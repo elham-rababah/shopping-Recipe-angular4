@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/do';
 import * as firebase from 'firebase';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Router } from '@angular/router';
@@ -58,6 +59,14 @@ export class AuthEffects {
 			new AuthAction.SigninUser()
 		];
 	});
+
+	@Effect({dispatch: false})
+	authLogout = this.actions$
+	.ofType(AuthAction.LOGOUT_USER)
+	.do(()=>{
+		this.router.navigate(['/']);
+	})
+
 
 	constructor(private actions$: Actions, private router: Router){
 	}
