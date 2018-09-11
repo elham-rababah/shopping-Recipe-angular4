@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../../shaerd/ingredient.model'
 import { ShoppingListService } from '../shopping-list.service';
-import * as ShoppingListActions from '../ngrx-store/shopping-list.actions'; 
+import * as ShoppingListActions from '../ngrx-store/shopping-list.actions';
 import * as FromApp from '../../ngrx-store/app.redusers';
 
 @Component({
@@ -36,27 +36,27 @@ export class ShoppingEditComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-  	let ingname = this.item.name;
-  	let ingamount = this.item.amount;
-    let newIngrediant = new Ingredient(ingname,ingamount);
-      if(this.editMode){
-        this.store.dispatch(new ShoppingListActions.UpdateIngredient({ingredient:newIngrediant}));
-        this.editMode = false;
-      } else {
-        this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));
-      }
-      this.onClear();
+    let ingname = this.item.name;
+    let ingamount = this.item.amount;
+    let newIngrediant = new Ingredient(ingname, ingamount);
+    if (this.editMode) {
+      this.store.dispatch(new ShoppingListActions.UpdateIngredient({ ingredient: newIngrediant }));
+      this.editMode = false;
+    } else {
+      this.store.dispatch(new ShoppingListActions.AddIngredient(newIngrediant));
+    }
+    this.onClear();
   }
 
-  onClear(){
+  onClear() {
     this.item = {
       name: '',
-      amount:0
+      amount: 0
     }
     this.editMode = false;
   }
 
-  onDelete(){
+  onDelete() {
     this.store.dispatch(new ShoppingListActions.DeleteIngredient());
   }
 
