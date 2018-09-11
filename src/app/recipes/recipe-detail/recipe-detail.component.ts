@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { Recipe } from '../recipe.model'
-import { ShoppingListService } from '../../shopping-list/shopping-list.service';
 import { RecipeService } from '../recipe.service';
 import * as ShoppingListActions from '../../shopping-list/ngrx-store/shopping-list.actions';
 import * as FromApp from '../../ngrx-store/app.redusers';
@@ -22,7 +21,6 @@ export class RecipeDetailComponent implements OnInit {
   recipeId: number;
 
   constructor(
-    private shoppingListService: ShoppingListService,
     private route: ActivatedRoute,
     private recipeService: RecipeService,
     private router: Router,
@@ -45,7 +43,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   deleteRecipe() {
-    this.recipeService.deleteRecipe(this.recipeId);
     this.recipesStore.dispatch(new RecipeActions.DeleteRecipe(this.recipeId));
     this.router.navigate(['/recipes'], { relativeTo: this.route });
 

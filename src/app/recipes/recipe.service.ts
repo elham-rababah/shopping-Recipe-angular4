@@ -46,23 +46,6 @@ export class RecipeService {
     return this.recipes.slice(index)[0];
   }
 
-
-  addRecipe(res: Recipe) {
-    this.recipes.push(res);
-    this.recipeChange.emit(this.recipes);
-  }
-
-  editRecipe(index, res: Recipe) {
-    this.recipes.splice(index, 1, res);
-    this.recipeChange.emit(this.recipes);
-  }
-
-  deleteRecipe(index) {
-    this.recipes.splice(index, 1);
-    this.recipeChange.emit(this.recipes);
-  }
-
-
   saveRecipeData() {
     return this.httpClient
       .put<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json', this.recipes)
