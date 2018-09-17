@@ -28,7 +28,7 @@ import { recipesReducers } from './ngrx-store/recipes.reducers';
     RecipesRoutingModule,
     CommonModule,
     ShaerdModule,
-    StoreModule.forFeature('Recipes', recipesReducers)
+    StoreModule.forFeature('recipes', recipesReducers)
   ],
   exports: []
 })

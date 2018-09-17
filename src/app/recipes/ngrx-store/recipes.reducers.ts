@@ -1,18 +1,19 @@
 import { Recipe } from './../recipe.model';
 import { Ingredient } from './../../shaerd/ingredient.model';
 import * as RecipeActions from './recipes.actions';
+import * as FromApp from '../../ngrx-store/app.redusers';
 
 
 export interface State  {
-  Recipes: Recipe [];
+  recipes: Recipe [];
 }
 
-export interface RecipeState {
-  Recipes: State;
+export interface RecipeState extends FromApp.AppState {
+  recipes: State;
 }
 
 const initialState: State = {
-  Recipes: [
+  recipes: [
    new Recipe(
      'Recipe name',
      'Tary Tasty',
@@ -40,26 +41,26 @@ export function recipesReducers(state = initialState, action: RecipeActions.Reci
     case RecipeActions.SET_RECIPES: {
       return {
         ...state,
-        Recipes: [...state.Recipes, action.payload]
+        recipes: [...state.recipes, action.payload]
       };
     }
     case RecipeActions.ADD_RECIPE: {
       return {
-        Recipes: [...state.Recipes, action.payload]
+        recipes: [...state.recipes, action.payload]
       };
     }
     case RecipeActions.EDIT_RECIPE: {
-      const recipes = [...state.Recipes];
+      const recipes = [...state.recipes];
       recipes[action.payload.index] = action.payload.updatedRecipe;
       return {
-        Recipes: recipes
+        recipes: recipes
       };
     }
     case RecipeActions.DELETE_RECIPE: {
-      const oldRecipes = [...state.Recipes];
+      const oldRecipes = [...state.recipes];
       oldRecipes.splice(action.payload, 1);
       return {
-        Recipes : oldRecipes
+        recipes : oldRecipes
       };
     }
     default: {
