@@ -18,16 +18,6 @@ export class RecipeService {
   recipes: Recipe[] = [
   ];
 
-
-  getRecipe() {
-    // To return copy about our array
-    return this.recipes.slice();
-  }
-
-  getRecipeByIndex(index) {
-    return this.recipes.slice(index)[0];
-  }
-
   saveRecipeData() {
     return this.httpClient
       .put<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json', this.recipes)
@@ -39,21 +29,4 @@ export class RecipeService {
           return error.throw(error);
         })
   }
-
-  getRecipeData() {
-    return this.httpClient
-      .get<Recipe[]>('https://shoppingandrecipe.firebaseio.com/recipes.json',
-      )
-      .map(
-        (res) => {
-          return res;
-        },
-        (error) => {
-          return error.throw(error);
-        });
-	}
-
-
-
-
 }

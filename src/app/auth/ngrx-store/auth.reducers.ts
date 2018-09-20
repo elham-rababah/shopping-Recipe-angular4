@@ -5,13 +5,12 @@ export interface State {
 	authenticated: boolean,
 }
 
-const initState: State = {	
+const initState: State = {
 	token: null,
 	authenticated: false,
 };
 
 export function authReducers(state = initState , action: AuthAction.AuthActions) {
-	console.log(action.type);
 	switch (action.type) {
 		case AuthAction.SIGNIN_USER:
 			console.log('AuthAction.SIGNIN_USER');
@@ -32,7 +31,7 @@ export function authReducers(state = initState , action: AuthAction.AuthActions)
 				...state,
 				authenticated: false,
 			};
-			
+
 		case AuthAction.SET_TOKEN:
 			console.log('AuthAction.SET_TOKEN');
 			return {
