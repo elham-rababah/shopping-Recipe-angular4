@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { RecipeService } from "../../recipes/recipe.service";
-import { Observable } from "rxjs/Observable";
-import { ShoppingListService } from "../../shopping-list/shopping-list.service";
-import * as fromAuth from "../../auth/ngrx-store/auth.reducers";
-import * as AuthActions from "../../auth/ngrx-store/auth.actions";
-import * as fromRecipe from "../../recipes/ngrx-store/recipes.reducers";
-import * as RecipeActions from "../../recipes/ngrx-store/recipes.actions";
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { RecipeService } from '../../recipes/recipe.service';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingListService } from '../../shopping-list/shopping-list.service';
+import * as fromAuth from '../../auth/ngrx-store/auth.reducers';
+import * as AuthActions from '../../auth/ngrx-store/auth.actions';
+import * as fromRecipe from '../../recipes/ngrx-store/recipes.reducers';
+import * as RecipeActions from '../../recipes/ngrx-store/recipes.actions';
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html"
+  selector: 'app-header',
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
   authState: Observable<fromAuth.State>;
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authState = this.store.select("auth");
+    this.authState = this.store.select('auth');
     console.log();
   }
 
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.shoppingListService.saveIngredientsData().subscribe(
       ingredients => {},
       err => {
-        console.log("error happend you should handel it", err);
+        console.log('error happend you should handel it', err);
       }
     );
   }

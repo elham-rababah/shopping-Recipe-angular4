@@ -20,7 +20,7 @@ export class RecipesEffects {
         );
     }).map(
       (res) => {
-          return [new RecipeActions.SetRecipes(res)];
+        return new RecipeActions.SetRecipes(res);
       },
       (error) => {
         error.throw(error);
@@ -35,7 +35,6 @@ export class RecipesEffects {
       , state['recipes'])
       .map(
         (res) => {
-          console.log(res);
           return res;
         },
         (error) => {

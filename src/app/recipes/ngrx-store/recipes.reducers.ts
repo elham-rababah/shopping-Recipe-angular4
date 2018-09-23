@@ -40,8 +40,7 @@ export function recipesReducers(state = initialState, action: RecipeActions.Reci
   switch (action.type) {
     case RecipeActions.SET_RECIPES: {
       return {
-        ...state,
-        recipes: [...state.recipes, action.payload]
+        recipes : [...action.payload]
       };
     }
     case RecipeActions.ADD_RECIPE: {
@@ -64,15 +63,8 @@ export function recipesReducers(state = initialState, action: RecipeActions.Reci
       };
     }
     case RecipeActions.GET_RECIPE: {
-      console.log(state.recipes);
       return {
         recipes : state.recipes
-      };
-    }
-    case RecipeActions.SET_RECIPES: {
-      console.log('action.payload+++++++++++++', action.payload);
-      return {
-        recipes : [...action.payload]
       };
     }
     default: {
